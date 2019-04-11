@@ -94,5 +94,73 @@ The relationship between these frames is shown in Figure \ref{fig:rosrefframes}.
 	\label{fig:rosrefframes}
 \end{figure}
 
+\section{Simultanious Localization and Mapping}
+
+\shortcite{slamp1} describes SLAM problem as a process by which a mobile robot can build a map of an environment and at the same time use this map to deduce its location. In SLAM, both the trajectory of the platform and the location of all landmarks are estimated online without the need for any a priori knowledge of location.
+
+In probabilistic SLAM, the probability distribution, 
+\begin{equation} \label{eq:slam1}
+P({\bf x}_{k},{\bf m}\vert {\bf Z}_{0:k},{\bf U}_{0:k},{\bf x}_{0})
+\end{equation}
+has to be computed at any time instance $k$. Where
+\begin{itemize}
+	\item ${\bf x}_k$: the state vector describing the pose of the vehicle.
+	
+	\item ${\bf u}_k$: the control vector, applied at time $k - 1$ to drive the vehicle to a state ${\bf x}_k$ at time $k$.
+	
+	\item ${\bf m}_i$: a vector describing the location of the $ith$ landmark whose true location is assumed time invariant. This is the map of the environment.
+	
+	\item ${\bf z}_{ik}$: an observation taken from the vehicle of the location of the $ith$ landmark at time $k$.
+	
+	\item ${\bf m}$: the set of all landmarks detected
+	
+	\item ${\bf Z}_{0:k}$: the set of all observations upto time $k$
+	
+	\item ${\bf U}_{0:k}$: the set of all control input upto time $k$
+	
+\end{itemize}
+
+The best estimate of ${\bf x}_k$ (pose) and ${\bf m}$ (map) at any time instance $k$ would be maximizing \ref{eq:slam1}.
+
+The \textit{observation model} describes the probability of making an observation ${\bf z}_k$ when the vehicle location and landmark locations are known and is generally described in the form
+\begin{equation}
+P({\bf z}_{k}\vert {\bf x}_{k},{\bf m})
+\end{equation}
+
+The\textit{ motion model} for the vehicle can be described in terms of a probability distribution on state transitions in the form
+\begin{equation}
+P({\bf x}_{k}\vert {\bf x}_{k-1},{\bf u}_{k})
+\end{equation}
+
+The state transition is assumed to be a Markov process which is independent of both the observations and the map. The next state ${\bf x}_k$ depends only on the immediately preceding state ${\bf x}_{k−1}$ and the applied control ${\bf u}_k$.
+
+Now, the pose of the vehicle and map can be estimated by standard two-step recursive (sequential) prediction (time-update) correction (measurement-update) form:
+
+\textbf{Time Update}
+\begin{equation}
+P({\bf x}_{k},{\bf m}\vert {\bf Z}_{0:k-1},{\bf U}_{0:k},{\bf x}_{0})= \int P({\bf x}_{k}\vert {\bf x}_{k-1},{\bf u}_{k}) \quad\times P({\bf x}_{k-1},{\bf m}\vert {\bf Z}_{0:k-1}, {\bf U}_{0:k-1},{\bf x}_{0}){\rm d}{\bf x}_{k-1}
+\end{equation}
+
+\textbf{Measurement Update}
+\begin{equation}
+P({\bf x}_{k},{\bf m}\vert {\bf Z}_{0:k},{\bf U}_{0:k},{\bf x}_{0}) = {P({\bf z}_{k}\vert {\bf x}_{k},{\bf m})P({\bf x}_{k}, {\bf m}\vert {\bf Z}_{0:k-1},{\bf U}_{0:k},{\bf x}_{0})\over P({\bf z}_{k}\vert {\bf Z}_{0:k-1},{\bf U}_{0:k})}
+\end{equation}
+
+An alternate way of formulating the problem would be.
+
+If the location of the vehicle ${\bf x}_k$ is know at all times. The map can be estimated by computing
+\begin{equation}
+P({\bf m}\vert {\bf X}_{0:k},{\bf Z}_{0:k}, {\bf U}_{0:k})
+\end{equation}
+. 
+
+If the landmark locations are known, the vehicles can be localized by computing
+\begin{equation}
+P({\bf x}_k\vert {\bf Z}_{0:k},{\bf U}_{0:k}, m)
+\end{equation}
+
+\section{Visual SLAM}
+
+
 \FloatBarrier
 
