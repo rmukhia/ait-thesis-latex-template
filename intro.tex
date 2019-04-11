@@ -2,37 +2,32 @@
 
 \chapter{Introduction}
 
-\textit{Some text.}
+\textit{An autonomous vehicle should be aware of its environment to take the next decision. SLAM (Simultaneous Localization and Mapping) systems can localize and map the environment at the same time. In this paper, I will focus on the implementation of a Monocular Visual Inertial SLAM system which will provide pose and odometry of the vehicle as well as point cloud of the environment.}
 
 \section{Overview}
 
-Human monitoring is therefore becoming
-increasingly expensive and ineffective as the torrent of video data
-increases. For instance, in a CCTV monitoring room (see
-Figure \ref{fig:monitoring}), security operators are required to
-monitor 24 hours a day and be ready to take action when an alarm
-occurs. 
+A functional architecture overview of autonomous driving vehicles has three principal components. Perception, Decision \& control and Vehicle platform manipulation [S. Behere, M. Törngren, 2015]. Perception means from the data provided by the sensor it has to understand the environment, localize itself and build a world model of its environment.
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=5in]{figures/monitoring}
-  \caption[CCTV monitoring room.]{\small CCTV monitoring
-    room. Reprinted from the Twenty First Security Web site
-    (\url{http://www.twentyfirstsecurity.com.au/}).}
-  \label{fig:monitoring}
-\end{figure}
+Visual Simultaneous Localization and Mapping(SLAM) systems provides localization and 
 
 \section{Problem Statement}
 
-Some text ...
+
 
 \section{Objectives}
 
-Some text ...
+The main objective of this study is to generate real time point cloud and pose by executing Monocular Visual Inertial SLAM algorithm using low cost commercially available Mobius Maxi action camera and a seperate low cost flight controller PixHawk 2.4.8 for IMU data. By fusing the output of this system with odometry data from GPS, a robust system can be built which will map outdoor environments, even if vision based tracking is lost and has to be reinitialized.
 
 \section{Limitations and Scope}
 
-Some text ...
+The scope of this study is to build a visual inertial SLAM system, which can provide real time point cloud and pose to other components in the perception pipeline.
+
+The limitations of this study are:
+
+\begin{itemize}
+	\item The system does not presently run in a nano computer like Odroid XUI 
+	\item The fusion system which will be able to combine GPS data along with SLAM results is not implemented and has been left as future work.
+\end{itemize}
 
 \section{Thesis Outline}
 
