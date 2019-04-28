@@ -3,7 +3,7 @@
 \chapter{Literature Review} 
 \label{ch:literature-review}
 
-\textit{Some intro..}
+\textit{ This chapter begins with review of functional architecture view of an autonomous driving system, coordinate systems,and the Pixhawk and ROS coordinate conventions. To understand the SLAM process, the chapter also reviews SLAM, visual SLAM, ORB SLAM and finally visual inertial ORB SLAM.} 
 
 \section{Software Architecture of Autonomous Driving Vehicle}
 \label{section-name-in-literature-review}
@@ -33,7 +33,7 @@ The \textbf{platform stabilization components}'s task is to keep the vehicle pla
 	\centering
 	\includegraphics[width=5in]{figures/fav_autonomous_driving}
 	\caption[FAV of Antonomous Driving System.]{\small 
-		Functional Architecture View of Autonomous Driving System. Reprinted from work of \shortciteA{sbehere16t} }
+		Functional architecture view of autonomous driving system. Reprinted from Behere (2016). }
 	\label{fig:fav_automonous}
 \end{figure}
 
@@ -64,16 +64,16 @@ In local tangent coordinate system, a position in earth is fixed as the origin. 
 
 \begin{figure}%
 	\centering
-	\subfloat[\small Earth Centric, Earth Fixed coordinate system. By Krishnavedala - Own work, CC BY-SA 3.0]{{\includegraphics[width=3in]{figures/ECEF}}}%
-	\subfloat[\small Local tangent plane coordinate systems]{{\includegraphics[width=3in]{figures/ENU_NED}}}%
-	\caption[ECEF coordinate system]{\small Coordinate Systems
+	\subfloat {{\includegraphics[width=3in]{figures/ECEF}}}%
+	\subfloat {{\includegraphics[width=3in]{figures/ENU_NED}}}%
+	\caption[ECEF coordinate system]{\small Coordinate systems. (a) Earth centric, earth fixed coordinate system. By Krishnavedala. (b) Local tangent plane coordinate systems
 	}%
 	\label{fig:coordinatesystem}%
 \end{figure}
 
 \subsection{Pixhawk and ROS coordinates}
 
-Pixhawk follows NED convention, whereas ROS follows ENU convention. The conversion between these different conventions is handled automatically by MAVROS. For translate airframe related data rotation of 180° is applied about ROLL (X) axis. For local 180° rotation is applied about ROLL (X) and 90° about YAW (Z) axes.
+Pixhawk follows NED convention, whereas ROS follows ENU convention. The conversion between these different conventions is handled automatically by MAVROS. For translate airframe related data rotation of $180^{\circ}$ degree is applied about ROLL (X) axis. For local $180^{\circ}$ rotation is applied about ROLL (X) and $90^{\circ}$ about YAW (Z) axes.
 
 ROS has other reference frames as described in \shortcite{rosrefframes}.
 
@@ -90,7 +90,7 @@ The relationship between these frames is shown in Figure \ref{fig:rosrefframes}.
 	\centering
 	\includegraphics[width=5in]{figures/ros_rel_frames}
 	\caption[FAV of Antonomous Driving System.]{\small 
-	Relationship between ros frame. \shortciteA{rosrefframes} }
+	Relationship between ROS frame. Reprinted from \shortciteA{rosrefframes}. }
 	\label{fig:rosrefframes}
 \end{figure}
 
@@ -132,7 +132,7 @@ The\textit{ motion model} for the vehicle can be described in terms of a probabi
 P({\bf x}_{k}\vert {\bf x}_{k-1},{\bf u}_{k})
 \end{equation}
 
-The state transition is assumed to be a Markov process which is independent of both the observations and the map. The next state ${\bf x}_k$ depends only on the immediately preceding state ${\bf x}_{k−1}$ and the applied control ${\bf u}_k$.
+The state transition is assumed to be a Markov process which is independent of both the observations and the map. The next state ${\bf x}_k$ depends only on the immediately preceding state ${\bf x}_{k-1}$ and the applied control ${\bf u}_k$.
 
 Now, the pose of the vehicle and map can be estimated by standard two-step recursive (sequential) prediction (time-update) correction (measurement-update) form:
 
@@ -223,7 +223,7 @@ In \textbf{loop closing}  the last keyframe processed by local mapping is taken 
 	\centering
 	\includegraphics[width=5in]{figures/orb_slam1}
 	\caption[ORB SLAM architecture]{\small 
-		ORB SLAM system overview. Reprinted from work of \shortcite{7219438} }
+		ORB SLAM system overview. Reprinted from work of \shortcite{7219438}. }
 	\label{fig:orb_slam1}
 \end{figure}
 
@@ -268,7 +268,7 @@ The \textbf{IMU initialization} has the following steps
 
 In \textbf{gyroscope bias estimation} can be done from the known orientation of two consecutive keyframes. A constant bias $b_g$ is optimized which minimizes the difference between gyroscope integration and relative orientation computed from ORB-SLAM, for all pairs of consecutive keyframes.
 
-In \textbf{scale and gravity approximation}, a scale  factor $s$ is computed which is used when transforming between camera $𝙲$ and IMU $𝙱$ coordinate systems.
+In \textbf{scale and gravity approximation}, a scale  factor $s$ is computed which is used when transforming between camera $C$ and IMU $B$ coordinate systems.
 
 In \textbf{accelerometer bias estimation, and scale and gravity direction refinement}, we include the gravity magnitute $G$ and the accelerometer bias.
 
