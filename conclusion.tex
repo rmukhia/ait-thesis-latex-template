@@ -3,15 +3,20 @@
 \chapter{Conclusion and Recommendations}
 \label{ch:conclusion}
 
-\textit{Some text..}
+\textit{The main objective of this study is to evaluate VIORB SLAM and determine its feasibility as a part of the preception component of an autonomous driving vehicle. This chapter concludes with the findings of the study and recommendations for future work.}
 
 \section{Conclusion}
-
-Text..
+The conclusion of this study are:
+\begin{itemize}
+	\item VIORB SLAM is closer to ground truth in approximating the scale of the constructed map than ORB SLAM.
+	\item ORB SLAM is more robust than VIORB SLAM and does not lose track easily.
+	\item Setting up VIORB SLAM is more complex than ORB SLAM, as it requires the camera intrinsic parameters, camera to IMU transformation, IMU bias parameters, and camera and IMU time offset. This increased complexity may be the reason VIORB SLAM is less robust than ORB SLAM.
+	\item ROS \textbf{'sys\_time'} mavros plugin synchronizes the time between the host computer and the flight controller. It uses a sigmoid function to interpolate the time offset. The interpolated time offset may not represent the actual time offset and it may affect VIORB SLAM.
+	\item The GPS module attached to the Pixhawk drifts and is not precise over short distances.
+	\item VIORB and ORB SLAM publish pose in zyx coordinate system, where the z axis protrudes out in the front direction of the camera or the IMU. ROS uses ENU coordinate convention, hence translation is needed. 
+\end{itemize}
 
 \section{Recommendations}
-
-Text..
-
+The calibration of camera intrinsic parameters, camera to IMU transformation, IMU bias parameters ,and camera and IMU time offset could be an issue, and proper calibration may make VIORB SLAM more robust. IMU having a low bias, and a tightly coupled camera IMU system, where the camera is triggered through an external signal from the host computer or the flight controller may help in time synchronization. Reducing jerky movements through mechanical means while the rover is moving on the ground may make it more robust.
 \FloatBarrier
 

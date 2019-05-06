@@ -2,27 +2,27 @@
 
 \chapter{Introduction}
 
-\textit{An autonomous vehicle should be aware of its environment to take the next decision. SLAM (Simultaneous Localization and Mapping) systems can localize and map the environment at the same time. In this paper, I focus on the implementation of a Monocular Visual Inertial SLAM system which will provide pose and odometry of the vehicle as well as point clouds of the environment.}
+\textit{An autonomous vehicle should be aware of its environment to take the next decision. SLAM (Simultaneous Localization and Mapping) systems can localize and map the environment at the same time. In this paper, I focus on the implementation of a Monocular Visual Inertial SLAM system that provide pose and odometry of the vehicle as well as point clouds of the environment.}
 
 \section{Overview}
 
-A functional architecture overview of autonomous driving vehicles has three principal components: perception, decision and control, and vehicle platform manipulation \shortcite{sbehere16t}. Perception means the data provided by the sensor can be used to understand the environment, localize the robot and build a world model of its environment.
+Autonomous driving vehicles have three principal components: perception, decision and control, and vehicle platform manipulation \shortcite{sbehere16t}. Perception means the data provided by the sensor can be used to understand the environment, localize the robot, and build a world model of the environment.
 
-Visual simultaneous localization and mapping(SLAM) systems provide localization and mapping at the same time. They use cameras, which are now a cheap consumer commodity, and can be a cost effective solution for perception.
+Visual simultaneous localization and mapping (SLAM) systems provide localization and mapping at the same time. They use cameras, which are now a cheap consumer commodity, and can be a cost-effective solution for perception.
 
-Monocular vSLAM requires only one camera, but it suffers from the issues of map initialization and scale ambiguity. That is the size of the environment mapped will not be according to scale, and the vehicle may not be able to function properly without a properly scaled map.
+Monocular vSLAM requires only one camera, but it suffers from issues of map initialization and scale ambiguity. That is the size of the environment mapped will not be to scale, so the vehicle may not be able to function properly.
 
-Integrating accelerometer and gyroscope measurement helps determine an approximate scale during map initialization and update the approximate pose offset between different image frames. It also helps in predicting the pose of next frame during tracking.
+Integrating accelerometer and gyroscope measurements can help determine an approximate scale during map initialization and update the approximate pose offset between subsequent image frames during tracking.
 
 
 \section{Problem Statement}
 
-An autonomous vehicle in unknown terrain has to perceive the environment around it for safe operation. The vehicle can be fitted with an array of sensors such as ultrasonic, infrared, multiarray laser sensors, and RGB-D cameras. Systems with many sensors have integration complexities and may suffer from weight constraints, reduced battery lifetime, and are more expensive than simpler systems.Monocular SLAM provides a cheaper, lighter-weight and simpler alternative. Monocular SLAM with IMU integration is pursued in this study, which will be used as part of the perception component in futute extension to this work.
+An autonomous vehicle in unknown terrain has to perceive the environment around it for safe operation. The vehicle can be fitted with an array of sensors such as ultrasonic, infrared, multiarray laser sensors, and RGB-D cameras. Systems with many sensors have integration complexities and may suffer from weight constraints, reduced battery lifetime, and high cost. Monocular SLAM provides a lower cost, lighter weight, simpler alternative. I pursue Monocular SLAM with IMU integration in this study, which will form the basis of the perception component in a futute extension to this work.
 
 
 \section{Objectives}
 
-The main objective of this study is to generate real time point clouds and robot pose by executing a monocular visual inertial SLAM algorithm using the low-cost commercially available Mobius Maxi action camera and a seperate low cost flight controller, the PixHawk 2.4.8, for IMU data. By fusing the output of this system with odometry data from GPS, a robust system can be built that maps outdoor environments, even when vision based tracking is lost and cannot be re-localized though the SLAM algorithm.
+The main objective of this study is to generate real time point clouds and robot poses by executing a monocular visual inertial SLAM algorithm using the low-cost commercially available Mobius Maxi action camera and a seperate low cost flight controller, the PixHawk 2.4.8, for IMU data. By fusing the output of this system with odometry data from GPS, a robust system can be built that maps outdoor environments, even when vision-based tracking is lost and the vehicle cannot be re-localized though the SLAM algorithm.
 
 \section{Limitations and Scope}
 
@@ -39,12 +39,12 @@ The limitations of this study are:
 
 I organize the rest of this dissertation as follows.
 
-In Chapter \ref{ch:literature-review}, I describe the literature review.
+In Chapter \ref{ch:literature-review}, I provide a literature review.
 
 In Chapter \ref{ch:methodology}, I propose my methodology.
 
-In Chapter \ref{ch:results}, I present the experimental results.
+In Chapter \ref{ch:results}, I present experimental results.
 
-Finally, in Chapter \ref{ch:conclusion}, I conclude my thesis.
+Finally, in Chapter \ref{ch:conclusion}, I conclude the special study.
 
 \FloatBarrier
