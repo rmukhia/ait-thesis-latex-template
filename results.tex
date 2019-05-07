@@ -23,9 +23,6 @@ The test rover was run in an indoor environment for 170 seconds, as shown in Fig
 
 The test rover while moving on the ground produced a lot of jerky movements and it affected VIORB SLAM more than ORB SLAM. VIORB SLAM re-localized a couple of times. It could be re-localize after 117.459 seconds. Tracking was lost when the rover was making a left turn and the number of features was relatively low compared to other frames.
 
-ORB SLAM tracked the environment for the entire duration of the test. There were errors in tracking because the rover returned halfway between the path it took. This was because the hallway was darker on its return path and features could not be detected precisely. 
-
-
 \begin{figure}[h]
 	
 	\centering1
@@ -36,21 +33,23 @@ ORB SLAM tracked the environment for the entire duration of the test. There were
 		\includegraphics[width=.5\textwidth]{figures/demo2_VIORB}
 	}
 	\caption[Indoor experiment.]{\small 
-		Indoor experiment. (a) Using ORB SLAM. (b) Using VIORB SLAM.}
+		The pointclouds, keyframes and path estimated in indoor experiment (a) Using ORB SLAM. (b) Using VIORB SLAM. The scale approximated by VIORB SLAM better than ORB SLAM, but loses track faster then ORB SLAM.}
 	\label{fig:indoor-path-visualization}
 	
 \end{figure}
 
-The trajectories of ORB SLAM and VIORB SLAM are compared in Figure~\ref{fig:indoor-experiment-trajectory}. VIORB SLAM's trajectory is closer to the real world trajectory, considering the distance calculated.
-
 \begin{figure} [h]
 	\centering
-	\includegraphics[width=5in]{figures/demo2_trajectory}
+	\includegraphics[width=5.5in]{figures/demo2_trajectory}
 	\caption[Indoor experiment trajectory]{\small 
-		Indoor experiment trajectory. }
+		Comparison of trajectory obtained through ORB SLAM and VIORB SLAM in indoor experiment. The scale estimated by VIORB SLAM is closer to the real world scale.}
 	\label{fig:indoor-experiment-trajectory}
 \end{figure}
 
+ORB SLAM tracked the environment for the entire duration of the test. There were errors in tracking because the rover returned halfway between the path it took. This was because the hallway was darker on its return path and features could not be detected precisely. 
+
+
+The trajectories of ORB SLAM and VIORB SLAM are compared in Figure~\ref{fig:indoor-experiment-trajectory}. VIORB SLAM's trajectory is closer to the real world trajectory, considering the distance calculated.
 
 
 \begin{table}[h]
@@ -76,7 +75,7 @@ In the outdoor experiment, the rover faced more jerky movements than the 	indoor
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=5in]{figures/demo3_screen}
+	\includegraphics[width=5.5in]{figures/demo3_screen}
 	\caption[Outdoor experiment environment]{\small 
 		Outdoor experiment environment. }
 	\label{fig:outdoor-experiment-live}
@@ -93,7 +92,7 @@ In the outdoor experiment, the rover faced more jerky movements than the 	indoor
 		\includegraphics[width=.5\textwidth]{figures/demo3_VIORB}
 	}
 	\caption[Outdoor experiment.]{\small 
-		Outdoor experiment. (a) Using ORB SLAM. (b) Using VIORB SLAM.}
+		The pointclouds, keyframes and path estimated in outdoor experiment (a) Using ORB SLAM. (b) Using VIORB SLAM. The scale approximated by VIORB SLAM is better than ORB SLAM, but is still not close to the real world scale. VIORB SLAM loses track faster than ORB SLAM. }
 	\label{fig:outdoor-path-visualization}
 	
 \end{figure}
@@ -103,17 +102,17 @@ The trajectory of ORB SLAM and VIORB SLAM is compared in Figure~\ref{fig:outdoor
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=5in]{figures/demo3_trajectory}
+	\includegraphics[width=5.5in]{figures/demo3_trajectory}
 	\caption[Outdoor experiment trajectory]{\small 
-		Outdoor experiment trajectory. }
+		Comparison of trajectory obtained through ORB SLAM and VIORB SLAM in outdoor experiment. The scale estimated by VIORB SLAM is better but loses track faster then ORB SLAM. }
 	\label{fig:outdoor-experiment-trajectory}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=5in]{figures/gps_trajectory}
+	\includegraphics[width=5.5in]{figures/gps_trajectory}
 	\caption[Outdoor experiment GPS trajectory]{\small 
-		Outdoor experiment GPS trajectory. }
+	GPS trajectory obtained in outdoor experiment. For short distances, GPS is not reliable and drifts. GPS result could not be used as ground truth.  }
 	\label{fig:outdoor-experiment-gps-trajectory}
 \end{figure}
 
