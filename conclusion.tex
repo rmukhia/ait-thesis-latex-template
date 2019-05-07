@@ -12,11 +12,11 @@ The conclusion of this study are:
 	\item ORB SLAM is more robust than VIORB SLAM and does not lose track as easily.
 	\item Setting up VIORB SLAM is more complex than ORB SLAM, as it requires the camera intrinsic parameters, camera-to-IMU transformation, IMU noise parameters, and camera and IMU time offset. This increased complexity may be one reason VIORB SLAM is less robust than ORB SLAM.
 	\item The ROS \textit{sys\_time} mavros plugin synchronizes the time between the host computer and the flight controller. The interpolated time offset may not represent the actual time offset. This may affect VIORB SLAM.
-	\item The GPS module attached to the Pixhawk drifts and is not precise over short distances.
+	\item The GPS module attached to the PixHawk drifts and is not precise over short distances.
 	\item VIORB and ORB SLAM publish pose in a zyx coordinate system, where the z axis protrudes out in the front direction of the camera or the IMU. ROS uses the ENU coordinate convention, hence translation is needed. 
 \end{itemize}
 
 \section{Recommendations}
-The calibration of camera intrinsic parameters, camera-to-IMU transformation, IMU noise parameters, and camera and IMU time offset could be an issue, and proper calibration may make VIORB SLAM more robust. Replacing the internal IMU in the Pixhawk with an external IMU having low noise, may make the calibration more accurate. A tightly coupled camera-IMU system, where the camera is triggered through an external signal from the host computer or the flight controller may help in time synchronization. Reducing jerky movements through mechanical means while the rover is moving on the ground may make it more robust.
+The calibration of camera intrinsic parameters, camera-to-IMU transformation, IMU noise parameters, and camera and IMU time offset could be an issue, and proper calibration may make VIORB SLAM more robust. Replacing the internal IMU in the PixHawk with an external IMU having low noise, may make the calibration more accurate. A tightly coupled camera-IMU system, where the camera is triggered through an external signal from the host computer or the flight controller may help in time synchronization. Reducing jerky movements through mechanical means while the rover is moving on the ground may make it more robust.
 \FloatBarrier
 

@@ -3,7 +3,7 @@
 \chapter{Literature Review} 
 \label{ch:literature-review}
 
-\textit{This chapter begins with a review of the functional architecture of autonomous driving systems, coordinate systems, the Pixhawk, and ROS coordinate conventions. To understand the SLAM process, the chapter also reviews SLAM, visual SLAM, ORB SLAM, and finally visual inertial ORB SLAM (VIORB).} 
+\textit{This chapter begins with a review of the functional architecture of autonomous driving systems, coordinate systems, the PixHawk, and ROS coordinate conventions. To understand the SLAM process, the chapter also reviews SLAM, visual SLAM, ORB SLAM, and finally visual inertial ORB SLAM (VIORB).} 
 
 \section{Software Architecture of Autonomous Driving Vehicles}
 \label{section-name-in-literature-review}
@@ -12,7 +12,7 @@
 
 \begin{itemize}
 	\item Perception of the external environment in which the vehicle operates
-	\item Decision making and control of vehicle motion with respect the external environment that is perceived
+	\item Decision making and control of vehicle motion with respect to the external environment that is perceived
 	\item Vehicle platform manipulation, which deals mostly with sensing, control, and actuation of the vehicle, with the intention of achieving the desired motion.
 \end {itemize}
 
@@ -71,9 +71,9 @@ In the local tangent plane coordinate system, a position on the earth is fixed a
 	\label{fig:coordinatesystem}%
 \end{figure}
 
-\subsection{Pixhawk and ROS coordinate systems}
+\subsection{PixHawk and ROS coordinate systems}
 
-Pixhawk follows the NED convention, whereas ROS follows the ENU convention. The conversion between these different conventions is handled automatically by MAVROS. To translate airframe-related data, a rotation of $180^{\circ}$ degrees is applied about the roll (X) axis. For local data, a $180^{\circ}$ rotation is applied about the roll (X) and $90^{\circ}$ rotation is applied about the yaw (Z) axes.
+PixHawk follows the NED convention, whereas ROS follows the ENU convention. The conversion between these different conventions is handled automatically by MAVROS. To translate airframe-related data, a rotation of $180^{\circ}$ degrees is applied about the roll (X) axis. For local data, a $180^{\circ}$ rotation is applied about the roll (X) and $90^{\circ}$ rotation is applied about the yaw (Z) axes.
 
 ROS has other reference frames as described by \shortciteA{rosrefframes}, shown in Figure \ref{fig:rosrefframes}.
 
