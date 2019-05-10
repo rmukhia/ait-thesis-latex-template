@@ -225,24 +225,31 @@ In the \textit{loop closing} thread, the last keyframe processed by the local ma
 
 \subsection{Visual Inertial ORB SLAM}
 
-Visual Inertial ORB SLAM \shortcite{DBLP:journals/corr/Mur-ArtalT16} extends upon ORB SLAM by integrating stream of IMU measurement which solves the scale ambiguity problem of monocular SLAM.
+Visual Inertial ORB SLAM \shortcite{DBLP:journals/corr/Mur-ArtalT16} extends upon ORB SLAM by integrating a stream of IMU measurement to solve the scale ambiguity problem of monocular SLAM.
 
-IMU's reference frame is considered as ${\bf B}$. Camera and IMU are considered rigidly attached and the transformation ${\bf T}_{CB}$ which can be obtained through calibration.
+We write the IMU reference frame as ${\bf B}$, and assume camera and IMU are rigidly attached and the transformation ${\bf T}_{CB}$ between the two frames can be obtained through calibration.
+
+Rotation, and transformations with subscripts $AB$ indicates "from $B$ to $A$". Position, and velocity with prefix subscript $A$ and postfix subscript $B$ indicates "$B$ with respect to $A$".
 
 \begin{equation}
-{\bf T}_{CB} = [{\bf R}_{CB} \vert _C{\bf p}_B]
+{\bf T}_{CB} = \left [
+\begin{tabular}{ccc}
+${\bf R}_{CB}$ & $\vert$ & $_C{\bf p}_B$ \\
+$0$ & & $1$ \\
+\end{tabular}      
+\right ] 
 \end{equation}
 
-The IMU orientation ${\bf R}_{WB}$, position $_W{\bf p}_B$ and velocity $_W{\bf V}_B$ in world reference frame $W$ can be computed as
+The IMU orientation ${\bf R}_{WB}$, position ${_W}{\bf p}_{B}$ and velocity $_W{\bf v}_B$ in world reference frame $W$ at time $k+1$ can be predicted based on estimates at time $k$ and IMU measurements collected between time $k$ and $k+1$.
 
-\begin{align} \mathbf {R}^{k+1}_\mathtt {WB} = & \mathbf {R}^{k}_\mathtt {WB} \, \text{Exp}\left(\left(\boldsymbol {\omega }^k_\mathtt {B} - \boldsymbol {b}^k_g\right)\Delta t\right) \nonumber\\ _\mathtt {W}\mathbf {v}^{k+1}_\mathtt {B} = & {_\mathtt {W}\mathbf {v}^{k}_\mathtt {B}} + \mathbf {g}_\mathtt {W} \Delta t + \mathbf {R}^{k}_\mathtt {WB} \left(\boldsymbol {a}^k_\mathtt {B} - \boldsymbol {b}^k_a\right)\Delta t \nonumber\\ _\mathtt {W}\mathbf {p}^{k+1}_\mathtt {B} = & {_\mathtt {W}\mathbf {p}^{k}_\mathtt {B}} + {_\mathtt {W}\mathbf {v}^{k}_\mathtt {B}} \Delta t + \frac{1}{2}\mathbf {g}_\mathtt {W} \Delta t^2 + \frac{1}{2} \mathbf {R}^{k}_\mathtt {WB} \left(\boldsymbol {a}^k_\mathtt {B} - \boldsymbol {b}^k_a\right)\Delta t^2 \end{align}
+\begin{align} \mathbf {R}^{k+1}_{WB} = & \mathbf {R}^{k}_{WB} \, \text{Exp}\left(\left(\boldsymbol {\omega }^k_{B} - \boldsymbol {b}^k_g\right)\Delta t\right) \nonumber\\ _{W}\mathbf {v}^{k+1}_{B} = & {_{W}\mathbf {v}^{k}_{B}} + \mathbf {g}_{W} \Delta t + \mathbf {R}^{k}_{WB} \left(\boldsymbol {a}^k_{B} - \boldsymbol {b}^k_a\right)\Delta t \nonumber\\ _{W}\mathbf {p}^{k+1}_{B} = & {_{W}\mathbf {p}^{k}_{B}} + {_{W}\mathbf {v}^{k}_{B}} \Delta t + \frac{1}{2}\mathbf {g}_{W} \Delta t^2 + \frac{1}{2} \mathbf {R}^{k}_{WB} \left(\boldsymbol {a}^k_{B} - \boldsymbol {b}^k_a\right)\Delta t^2 \end{align}
 
 Where
 \begin{itemize}
-	\item ${\omega }_{B}$ is the angular velocity of IMU.
-	\item ${a}_{B}$ is the acceleration of the IMU
-	\item $b_a$ and $b_g$ are the gradually varying bias of the accelerometer and gyroscope
-	\item $g_w$ is the acceleration due to gravity
+	\item ${\boldsymbol \omega }_{B}$ is the angular velocity of the IMU, represented as a twist vector in $\mathbb{R}^3$. 
+	\item $\boldsymbol {a}_{B}$ is the acceleration of the IMU
+	\item $\boldsymbol{b}_a$ and $\boldsymbol {b}_g$ are the gradually varying bias of the accelerometer and gyroscope
+	\item ${\bf g}_W$ is the acceleration due to gravity
 \end{itemize}
 
 Using IMU preintegration, 
