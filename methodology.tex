@@ -83,21 +83,21 @@ P = 1 - e^{\frac{1}{2} (1 - \frac{1}{(1 - I)})}
 The two coefficients, $\alpha$ and $\beta$ are calculated using \ref{eq:sigmoidalpha} and \ref{eq:sigmoidbeta}. $\alpha_i$ and $\beta_i$ are the initial constraint constants. $\alpha_f$ and $\beta_f$ are the final constraint constants.
 
 \begin{equation} \label{eq:sigmoidalpha}
-\alpha = P \times \alpha_f + (1 - P) * \alpha_i
+\alpha = P  \alpha_f + (1 - P)  \alpha_i
 \end{equation}
 
 \begin{equation} \label{eq:sigmoidbeta}
-\beta = P \times \beta_f + (1 - P) * \beta_i
+\beta = P  \beta_f + (1 - P)  \beta_i
 \end{equation}
 
 The interpolated time offset $t$ and time skew $t_{skew}$ is updated for each timesync messaged received until the interpolation has not converged using online exponential smoothing filter given in \ref{eq:onlinesmoothingoffset} and \ref{eq:onlinesmoothingskew}.
 
 \begin{equation} \label{eq:onlinesmoothingoffset}
-t_{k} = \alpha \times t_{offset}  + (1 - \alpha) \times (t_{k-1} + t_{skew_{k-1}})
+t_{k} = \alpha  t_{offset}  + (1 - \alpha)  (t_{k-1} + t_{skew_{k-1}})
 \end{equation}
 
 \begin{equation} \label{eq:onlinesmoothingskew}
-t_{skew_k} = \beta \times (t_k - t_{k-1}) + (1 - \beta) \times t_{skew_{k-1}} 
+t_{skew_k} = \beta  (t_k - t_{k-1}) + (1 - \beta)  t_{skew_{k-1}} 
 \end{equation}
 
 After the estimate has converged, it is used until a maximum number of consecutive observations are received that is higher than a threshold deviation from the present estimate. In this case, the estimate is re-calculated with $n$ new observations.
@@ -110,7 +110,7 @@ The IMU and camera are independently connected to the test computer. They are no
 I created clips as a middleware ROS package to ensure that there is at least one IMU measurement between two image frames. If two consecutive images are received without any IMU measurements in between, then the image frame is dropped.
 
 \subsection{LearnVIORB}
-LearnVIORB is a community-developed implementation of Visual Inertial ORB SLAM \shortcite{DBLP:journals/corr/Mur-ArtalT16}. This package does not publish pose and point cloud in real time. I added support for publishing pose, point cloud, and tf information as ROS topics as part of this special study. 
+LearnVIORB \cite{learnviorb} is a community-developed implementation of Visual Inertial ORB SLAM \shortcite{DBLP:journals/corr/Mur-ArtalT16}. This package does not publish pose and point cloud in real time. I added support for publishing pose, point cloud, and tf information as ROS topics as part of this special study. 
 I referred to the open source project ORB\_SLAM2\_CUDA \cite{orbcuda}, an enhancement of ORB2 SLAM, which does publish these topics for implementation.
 
 \subsection{PX4 firmware}
